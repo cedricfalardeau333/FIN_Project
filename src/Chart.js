@@ -71,10 +71,10 @@ const RealTimeGraph = () => {
 
     const [postInterestRateValue, setPostInterestRateValue] = useState(5); // Initial intrest rate value
     const [preInterestRateValue, setPreInterestRateValue] = useState(8); // Initial intrest rate value
-    const [averageInflationValue, setAverageInflationValue] = useState(2); // Initial intrest rate value
+    const [averageInflationValue, setAverageInflationValue] = useState(2); // Initial inflation rate value
     const [ageValue, setAgeValue] = useState(18); // Initial age value
     const [retirementAgeValue, setRetirementAgeValue] = useState(65); // Initial retirement age value
-    const [deathAgeValue, setDeathAgeValue] = useState(85); // Initial retirement age value
+    const [deathAgeValue, setDeathAgeValue] = useState(85); // Initial death age value
     const [initialInvestmentValue, setInitialInvestmentValue] = useState(0); // Initial Investment value
     const [monthlyContibutionsValue, setMonthlyContributionsValue] = useState(0); // Initial Investment value
     const [currentMonthlyContibutionsValue, setCurrentMonthlyContributionsValue] = useState(0); // Initial Investment value
@@ -323,7 +323,6 @@ const RealTimeGraph = () => {
         const data = [];
         for (let i = 0; i <= count; i++) {
             if (i > (retirementAge - age)) {
-                // data.push(calculateCompoundInterestAfterRetirement(postInterestRate, i, data[i - 1], inflation, monthlybudget,age+i,retirementAge));
                 data.push(calculateCompoundInterestAfterRetirement(data[retirementAge - age], monthlybudget, postInterestRate, inflation, i - (retirementAge - age), (retirementAge - age), age + i, retirementAge));
                 continue;
             }
@@ -475,25 +474,25 @@ const RealTimeGraph = () => {
         setMidRetirementChangeIsCollapsed(!midRetirementChangeIsCollapsed);
 
     }
-    
-  const [boxWidth, setBoxWidth] = useState('10%');
 
-  useEffect(() => {
-    const threshold = 1500; 
+    const [boxWidth, setBoxWidth] = useState('10%');
 
-    const handleResize = () => {
-      if (window.innerWidth < threshold) {
-        setBoxWidth('15%');  // width when window smaller than threshold
-      } else {
-        setBoxWidth('200px');  // width when window larger than threshold
-      }
-    };
+    useEffect(() => {
+        const threshold = 1500;
 
-    window.addEventListener('resize', handleResize);
-    handleResize(); 
+        const handleResize = () => {
+            if (window.innerWidth < threshold) {
+                setBoxWidth('15%');  // width when window smaller than threshold
+            } else {
+                setBoxWidth('200px');  // width when window larger than threshold
+            }
+        };
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <Container style={{ backgroundImage: 'linear-gradient(#f0f6fc, #9ec2e6)' }}>
@@ -502,20 +501,20 @@ const RealTimeGraph = () => {
                     <h2 style={{ marginBottom: "0px", marginTop: "0px", padding: '0px' }} className="text-center">FIN#</h2>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="form" className="p-4 border rounded shadow-sm bg-light">
-    <div style={{
-      position: 'absolute',
-      top: '10%',
-      right: '20%',
-      background: '#f8f9fa',
-      padding: '5px',
-      borderRadius: '8px',
-      boxShadow: '0 0 10px rgba(0,0,0,0.2)',
-      width: boxWidth,
-      zIndex: 100,
-      transition: 'all 0.3s ease',
-    }}>
+                            <div style={{
+                                position: 'absolute',
+                                top: '10%',
+                                right: '20%',
+                                background: '#f8f9fa',
+                                padding: '5px',
+                                borderRadius: '8px',
+                                boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+                                width: boxWidth,
+                                zIndex: 100,
+                                transition: 'all 0.3s ease',
+                            }}>
                                 <div
-                                    style={{ display: 'flex', alignItems: 'center', cursor: 'pointer'}}
+                                    style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
                                     onClick={toggleCollapseInheritance}
                                 >
                                     <div style={{ marginRight: '10px' }}>
@@ -528,7 +527,7 @@ const RealTimeGraph = () => {
                                 {!inheritanceIsCollapsed && (
                                     <>
                                         <Row className="mb-3">
-                                            <Form.Label style={{fontSize:'14px'}}>Value of Inheritance:</Form.Label>
+                                            <Form.Label style={{ fontSize: '14px' }}>Value of Inheritance:</Form.Label>
                                             <Col>
                                                 <Form.Control
                                                     style={{ width: '80%', minWidth: '0' }}
@@ -546,7 +545,7 @@ const RealTimeGraph = () => {
                                             </Col>
                                         </Row>
                                         <Row className="mb-3">
-                                            <Form.Label style={{fontSize:'14px'}}>Age of Inheritance:</Form.Label>
+                                            <Form.Label style={{ fontSize: '14px' }}>Age of Inheritance:</Form.Label>
                                             <Col>
                                                 <Form.Control
                                                     style={{ width: '80%', minWidth: '0' }}
@@ -591,7 +590,7 @@ const RealTimeGraph = () => {
                                 {!midRetirementChangeIsCollapsed && (
                                     <>
                                         <Row className="mb-3">
-                                            <Form.Label style={{fontSize:'14px'}}>New Monthly income:</Form.Label>
+                                            <Form.Label style={{ fontSize: '14px' }}>New Monthly income:</Form.Label>
                                             <Col>
                                                 <Form.Control
                                                     style={{ width: '80%', minWidth: '0' }}
@@ -609,7 +608,7 @@ const RealTimeGraph = () => {
                                             </Col>
                                         </Row>
                                         <Row className="mb-3">
-                                            <Form.Label style={{fontSize:'14px'}}>Age of Income Change:</Form.Label>
+                                            <Form.Label style={{ fontSize: '14px' }}>Age of Income Change:</Form.Label>
                                             <Col>
                                                 <Form.Control
                                                     style={{ width: '80%', minWidth: '0' }}
@@ -748,105 +747,105 @@ const RealTimeGraph = () => {
                         </Col>
                     </Row>
                     <div style={{
-                    width: '100%',
-                    maxWidth: '1000px',
-                    aspectRatio: '2 / 1', // 👈 Will scale height with width
-                    margin: 'auto',
-                    backgroundImage: 'linear-gradient(GhostWhite, azure)',
-                    borderRadius: '15px',
-                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3)',
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                        width: '100%',
+                        maxWidth: '1000px',
+                        aspectRatio: '2 / 1',
+                        margin: 'auto',
+                        backgroundImage: 'linear-gradient(GhostWhite, azure)',
+                        borderRadius: '15px',
+                        boxShadow: '0 15px 30px rgba(0, 0, 0, 0.3)',
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                     }}>
-                    <div style={{ width: '100%', height: '100%' }}>
-                        <Line
-                            data={chartData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                scales: {
-                                    y: {
-                                        ticks: {
-                                            beginAtZero: true
+                        <div style={{ width: '100%', height: '100%' }}>
+                            <Line
+                                data={chartData}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    scales: {
+                                        y: {
+                                            ticks: {
+                                                beginAtZero: true
+                                            },
+                                            grid: {
+                                                display: true,
+                                            }
                                         },
-                                        grid: {
-                                            display: true,
+                                        x: {
+                                            type: 'linear',
+                                            min: 18,
+                                            max: 100,
+                                            ticks: {
+                                                stepSize: 1,
+                                            },
+                                            grid: {
+                                                display: false,
+                                            },
                                         }
                                     },
-                                    x: {
-                                        type: 'linear',
-                                        min: 18,
-                                        max: 100,
-                                        ticks: {
-                                            stepSize: 1,
-                                        },
-                                        grid: {
+                                    plugins: {
+                                        title: {
                                             display: false,
                                         },
-                                    }
-                                },
-                                plugins: {
-                                    title: {
-                                        display: false,
-                                    },
-                                    legend: {
-                                        display: true,
-                                        position: 'bottom',
-                                        labels: {
-                                            boxWidth: 20,
-                                            boxHeight: 2,
-                                            padding: 10,
-                                            font: {
-                                                size: 14,
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom',
+                                            labels: {
+                                                boxWidth: 20,
+                                                boxHeight: 2,
+                                                padding: 10,
+                                                font: {
+                                                    size: 14,
+                                                },
+                                            }
+                                        },
+                                        datalabels: {
+                                            color: 'green',
+                                            display: function (context) {
+                                                return (context.datasetIndex === 0 && context.dataIndex === retirementAgeValue - ageValue);
                                             },
-                                        }
-                                    },
-                                    datalabels: {
-                                        color: 'green',
-                                        display: function (context) {
-                                            return (context.datasetIndex === 0 && context.dataIndex === retirementAgeValue - ageValue);
-                                        },
-                                        anchor: 'end',
-                                        align: 'end',
-                                        font: {
-                                            size: 15,
-                                            weight: 'bold',
-                                            family: 'Arial',
-                                        },
-                                        offset: -2,
-                                        formatter: (value) => {
-                                            const formattedValue = new Intl.NumberFormat('en-CA', {
-                                                style: 'currency',
-                                                currency: 'CAD',
-                                                minimumFractionDigits: 0,
-                                                maximumFractionDigits: 0
-                                            }).format(value);
+                                            anchor: 'end',
+                                            align: 'end',
+                                            font: {
+                                                size: 15,
+                                                weight: 'bold',
+                                                family: 'Arial',
+                                            },
+                                            offset: -2,
+                                            formatter: (value) => {
+                                                const formattedValue = new Intl.NumberFormat('en-CA', {
+                                                    style: 'currency',
+                                                    currency: 'CAD',
+                                                    minimumFractionDigits: 0,
+                                                    maximumFractionDigits: 0
+                                                }).format(value);
 
-                                            return `FIN: ${formattedValue}`;
-                                        }
-                                    },
-                                    annotation: {
-                                        annotations: {
-                                            lineAtZero: {
-                                                type: 'line',
-                                                xMin: 0,
-                                                xMax: 0,
-                                                borderColor: 'blue',
-                                                borderWidth: 2,
-                                                label: {
-                                                    content: 'Zero',
-                                                    position: 'top',
+                                                return `FIN: ${formattedValue}`;
+                                            }
+                                        },
+                                        annotation: {
+                                            annotations: {
+                                                lineAtZero: {
+                                                    type: 'line',
+                                                    xMin: 0,
+                                                    xMax: 0,
+                                                    borderColor: 'blue',
+                                                    borderWidth: 2,
+                                                    label: {
+                                                        content: 'Zero',
+                                                        position: 'top',
+                                                    },
                                                 },
                                             },
-                                        },
+                                        }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            top: 20,
+                                        }
                                     }
-                                },
-                                layout: {
-                                    padding: {
-                                        top: 20,
-                                    }
-                                }
-                            }}
-                        />
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="slider-container" style={{ marginLeft: '5%', marginRight: '4%' }}>
