@@ -44,8 +44,6 @@
 
 // add shortfall. Show how much they need if they don't have enough money. Or inverse if theres excess
 
-//Possible pension 
-
 // DONE ------------- adjust monthly income to be adjusted with time and inflation after
 
 
