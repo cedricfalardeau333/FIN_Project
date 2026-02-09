@@ -18,8 +18,6 @@
 
 // DONE ------------ Not sure why its asking for the monthly investment field to be filled out
 
-// ? --------------- Not sure but I think the formulas are not accurately calculating stuff
-
 // DONE ------------ Can we show the existing pac if they have one and how it will not , in most cases, fulfil the needs
 
 // YES ------------- Does the monthly retirement income factor inflation?
@@ -846,7 +844,7 @@ const RealTimeGraph = () => {
                             />
                         </div>
                     </div>
-                    <div className="slider-container" style={{ marginLeft: '5%', marginRight: '4%' }}>
+                    <div className="slider-container" style={{ marginLeft: '9%', marginRight: '4%' }}>
 
                         <Range
                             values={ageValues}
